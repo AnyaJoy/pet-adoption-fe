@@ -40,7 +40,9 @@ On the front-end admins should be able to:
 
 ### Screenshot
 
-![](./Screenshot_app.png)
+![](./Screenshots/Screenshot_3.png)
+![](./Screenshots/Screenshot_1.png)
+![](./Screenshots/Screenshot_2.png)
 
 <!-- ### Links
 
