@@ -1,0 +1,125 @@
+.pet-card-wrapper-horizontal {
+  width: 100%;
+  padding: 15px;
+  margin-top: 13px;
+  margin-bottom: 13px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  display: flex;
+  position: relative;
+  justify-content: space-evenly;
+
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(219, 218, 218, 0.9) 0px 0px 0px 1px;
+}
+
+.pet-card-wrapper-horizontal:hover {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.pet-card-wrapper-vertical {
+  margin: 10px;
+  background-color: #f9fafbff;
+  width: 250px;
+  padding: 20px;
+  height: 430px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(219, 218, 218, 0.9) 0px 0px 0px 1px;
+
+  position: relative;
+}
+
+.pet-card-wrapper-vertical:hover {
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.pet-info-horizontal {
+  width: 58%;
+  padding-left: 30px;
+}
+
+.pet-img {
+  width: 210px;
+  border-radius: 10px;
+}
+
+.div-line {
+  height: 1px;
+  background-color: rgba(128, 128, 128, 0.24);
+  width: 100%;
+  /* margin: 10px 2% 10px 0%; */
+  margin-bottom: 10px;
+}
+
+.pet-name {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.card-field-label {
+  text-align: start;
+  font-size: 1.2rem;
+  margin-bottom: 3px;
+}
+
+.card-info {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.bullet-point-img {
+  width: 13px;
+}
+
+.open-card-button-vertical {
+  background-color: #445cffff;
+  color: white;
+  border: none;
+  width: 85%;
+  padding: 10px 63px 10px 63px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.open-card-button-horizontal {
+  margin-top: 15px;
+  background-color: #445cffff;
+  color: white;
+  border: none;
+  width: 120px;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-decoration: none;
+}
+
+.saved-pets-wrapper {
+  /* margin-top: 10px; */
+  display: flex;
+  flex-wrap: wrap;
+  height: 445px;
+  overflow: scroll;
+  padding: 1px;
+  border-radius: 10px;
+  padding-right: 90px;
+}
+
+.saved-pets-wrapper::-webkit-scrollbar {
+  display: none;
+}

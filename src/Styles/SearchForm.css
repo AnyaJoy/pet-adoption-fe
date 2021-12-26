@@ -1,0 +1,109 @@
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-input {
+  background-color: rgba(203, 210, 216, 0.2);
+  border: none;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  width: 765px;
+  color: #6b7280ff;
+  font-size: 1.1rem;
+  position: relative;
+}
+
+.search-input::placeholder {
+  color: rgb(170, 172, 173);
+  font-size: 1.1rem;
+}
+
+.search-button-true {
+  background-color: #445cffff;
+  color: white;
+  border: none;
+  width: 130px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
+  right: 199px;
+  top: 5px;
+}
+
+.search-loader {
+  margin-top: 15px;
+  padding: 11.4px 11.4px;
+  background-color: #445cffff;
+  border-radius: 5px;
+  text-align-last: center;
+
+  width: 130px;
+  position: absolute;
+  right: 84px;
+  top: -10px;
+}
+
+.search-loader span {
+  vertical-align: middle;
+  border-radius: 100%;
+
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 3px 2px;
+  -webkit-animation: search-loader 0.8s linear infinite alternate;
+  animation: search-loader 0.8s linear infinite alternate;
+}
+.search-loader span:nth-child(1) {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+  background: rgb(255, 255, 255, 0.6);
+  /* background: rgba(68, 92, 255, 0.6); */
+}
+.search-loader span:nth-child(2) {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+  background: rgb(255, 255, 255, 0.8);
+  /* background: rgba(68, 92, 255, 0.8); */
+}
+.search-loader span:nth-child(3) {
+  -webkit-animation-delay: -0.26666s;
+  animation-delay: -0.26666s;
+  background: rgb(255, 255, 255, 1);
+  /* background: rgba(68, 92, 255, 1); */
+}
+.search-loader span:nth-child(4) {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+  background: rgb(255, 255, 255, 0.8);
+  /* background: rgba(68, 92, 255, 0.8); */
+}
+.search-loader span:nth-child(5) {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+  background: rgb(255, 255, 255, 0.4);
+  /* background: rgba(68, 92, 255, 0.4); */
+}
+
+@keyframes search-loader {
+  from {
+    transform: scale(0, 0);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+@-webkit-keyframes search-loader {
+  from {
+    -webkit-transform: scale(0, 0);
+  }
+  to {
+    -webkit-transform: scale(1, 1);
+  }
+}
+
+

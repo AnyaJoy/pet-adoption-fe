@@ -1,0 +1,126 @@
+.navbar-logged-in {
+  width: 80%;
+  padding: 10px;
+  margin: auto;
+  font-size: 1.2rem;
+  cursor: auto;
+  margin-bottom: 30px;
+}
+
+.app-label {
+  float: left;
+  font-size: 1.2rem;
+  font-weight: bold;
+  /* padding: 11px 10px 0 25px; */
+  padding: 0 20px 0 0;
+  color: #445cffff;
+  text-decoration: none;
+  border-right: 2px solid #445cffff;
+}
+
+.home-button-false{
+    text-decoration: none;
+    color: #667085FF;
+    float: left;
+    margin-left: 20px;
+}
+
+.home-button-false:hover{
+    color: rgb(80, 88, 105);
+}
+
+.home-button-true{
+    text-decoration: none;
+    color: #445cffff;
+    float: left;
+    margin-left: 20px;
+}
+
+.pets-button-false{
+    text-decoration: none;
+    color: #667085FF;
+    float: left;
+    margin-left: 20px;
+}
+
+.pets-button-false:hover{
+    color: rgb(80, 88, 105);
+}
+
+.pets-button-true{
+    text-decoration: none;
+    color: #445cffff;
+    float: left;
+    margin-left: 20px;
+}
+
+.profile-button-false {
+    text-decoration: none;
+    color: #667085FF;
+    float: left;
+    margin-left: 20px;
+}
+
+.profile-button-false:hover {
+    color: rgb(80, 88, 105);
+}
+
+.profile-button-true {
+    text-decoration: none;
+    color: #445cffff;
+    float: left;
+    margin-left: 20px;
+}
+
+.dashboard-button-true {
+    text-decoration: none;
+    color: #445cffff;
+    float: left;
+    margin-left: 20px;
+}
+
+.dashboard-button-false {
+    text-decoration: none;
+    color: #667085FF;
+    float: left;
+    margin-left: 20px;
+}
+
+.logout-button {
+    text-decoration: none;
+    color: #667085FF;
+    float: right;
+}
+
+.logout-button:hover {
+    color: rgb(80, 88, 105);
+}
+
+.navbar-logged-out {
+    cursor: default;
+    margin-bottom: 70px;
+}
+
+.login-button {
+    text-decoration: none;
+    color: #667085FF;
+    float: right;
+}
+
+.login-button:hover {
+    color: #445cffff;
+    cursor: pointer;
+}
+
+.non-active-button {
+    color: #667085FF;
+    float: right;
+    float: left;
+    color: #667085FF;
+    margin-left: 20px;
+    cursor: default;
+}
+
+
+
+

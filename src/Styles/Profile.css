@@ -1,0 +1,180 @@
+.profile-page-wrapper {
+  /* padding: 0px 0 10px 0; */
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.profile-wrapper {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.myPets-wrapper {
+  width: 55%;
+}
+
+.profile-card {
+  margin-top: 10px;
+  width: 340px;
+  background-color: #f4f6fbff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #525252ff;
+}
+
+.profile-card-body {
+  border-radius: 10px;
+  width: 310px;
+  margin: auto;
+}
+
+.profile-description {
+  display: flex;
+  height: auto;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.profile-img {
+  border-radius: 10px;
+  width: 30%;
+  margin: 10px;
+}
+
+.user-name-and-description {
+  width: 60%;
+  text-align: -webkit-left;
+  margin: 10px 10px 10px 0;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.bio-wrapper {
+  text-align: start;
+  font-size: 1rem;
+  margin-top: 5px;
+
+  font-weight: 600;
+
+  color: #525252ff;
+
+  border: none;
+  resize: none;
+}
+
+.save-button-true {
+  margin-top: 15px;
+  background-color: #f9399cff;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 9px;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.update-form-wrapper {
+  text-align: start;
+  max-width: 350px;
+  padding: 5px 5px;
+  margin: 0 0 10px 0;
+}
+
+.input-descriptions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 76%;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 3px;
+  color: rgba(82, 82, 82, 0.644);
+}
+
+.input-update {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 3px;
+  color: rgba(82, 82, 82, 0.644);
+}
+
+.single-input {
+  background-color: rgba(255, 255, 255, 0.829);
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 15px;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #6b7280ff;
+}
+
+.double-input {
+  background-color: rgba(255, 255, 255, 0.829);
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 15px;
+  width: 49.5%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #6b7280ff;
+}
+
+.link-to-search {
+  color: #f9399cff;
+  text-decoration: none;
+}
+
+.saved-pets-empty {
+  margin-top: 70px;
+  padding-right: 110px;
+}
+
+.my-pets-header {
+  font-size: 2.7rem;
+  font-weight: bolder;
+  color: #525252ff;
+  text-align: start;
+}
+
+.quote-and-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 90px;
+  margin-bottom: 7px;
+}
+
+.toggler-profile-page {
+  display: flex;
+  background-color: rgba(203, 210, 216, 0.2);
+  font-size: 1rem;
+  cursor: pointer;
+  align-items: center;
+  border-radius: 5px;
+  height: fit-content;
+}
+
+.no-pets-header {
+  margin-top: 15px;
+  color: #6b7280ff;
+  font-size: 1.5rem;
+}
+
+.logo-profile-page {
+  width: 15%;
+}

@@ -1,0 +1,1 @@
+export const URLrequests = process.env.NODE_ENV == 'production' ? "www.superwebsite.com" : "http://localhost:3001"

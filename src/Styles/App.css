@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+* {
+  font-family: "Nunito", sans-serif;
+  box-sizing: border-box;
+  padding: none;
+  margin: none;
+ 
+}
+
+.search-page-wrapper {
+  padding: 30px;
+}

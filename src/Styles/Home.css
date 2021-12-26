@@ -1,0 +1,114 @@
+.home-page-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 30px;
+}
+
+.left-column {
+  width: 60%;
+  padding-top: 20px;
+  padding-right: 40px;
+  padding-left: 20px;
+}
+
+.right-column {
+  width: 40%;
+  align-content: flex-start;
+}
+
+.logo {
+  width: 15%;
+  margin-right: 70px;
+}
+
+.quote {
+  padding-top: 8px;
+  margin: auto;
+  font-size: 2.7rem;
+  font-weight: bolder;
+  color: #525252ff;
+  text-align: start;
+}
+
+.author {
+  padding-top: 20px;
+  margin: auto;
+  font-size: 1.5rem;
+  font-weight: 1000;
+  color: #525252ff;
+  text-align: start;
+}
+
+.welcome-header {
+  margin-top: 15px;
+  color: #445cffff;
+  font-size: 2rem;
+  font-weight: bolder;
+  margin-bottom: 30px;
+  width: 85%;
+}
+
+.home-page-logged-in-wrapper {
+  width: 100%;
+}
+
+.welcome-header-logged-in {
+  color: #525252ff;
+  font-size: 2.5rem;
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+
+.service-description {
+  margin-top: 15px;
+  color: #6b7280ff;
+  font-size: 1.5rem;
+  text-align: start;
+}
+
+.service-description-logged-in {
+  margin-top: 15px;
+  color: #6b7280ff;
+  font-size: 1.5rem;
+  padding-bottom: 30px;
+  width: 55%;
+  margin: auto;
+}
+
+.search-pointer {
+  color: #445cffff;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.bold {
+  color: #6b7280ff;
+  font-weight: bold;
+}
+
+/* .search-form-wrapper{
+
+} */
+
+.pets-list-wrapper {
+  padding-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: flex-start;
+
+  width: 80%;
+  margin: auto;
+  color: #525252ff;
+}
+
+.under-search-text {
+  color: rgba(82, 82, 82, 0.644)
+}
+
+.link-to-profile {
+  color:#F9399CFF;
+  text-decoration: none;
+}

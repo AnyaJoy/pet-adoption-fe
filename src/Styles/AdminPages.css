@@ -1,0 +1,50 @@
+/* user's profile */
+.user-info-wrapper {
+  text-align: start;
+  margin-top: 15px;
+  padding: 5px;
+}
+
+.info-name-field {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 3px;
+  color: rgb(139, 141, 146);
+}
+
+.info-field {
+  background-color: rgba(255, 255, 255, 0.829);
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  color: rgb(103, 106, 112);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.profile-card-viewed-by-admin {
+  background-color: #f4f6fbff;
+  border-radius: 10px;
+  padding: 0 15px 0 15px;
+}
+
+.edit-pet-page-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.pet-info-field-name {
+  color: #525252ff;
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 3px;
+  margin-left: 5px;
+}
+
+.edit-pet-page-header {
+  margin-top: 13px;
+  color: #525252ff;
+  font-size: 2.1rem;
+  font-weight: bolder;
+}
