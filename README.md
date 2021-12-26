@@ -10,7 +10,7 @@ A pet-adoption web platform, where users can sign up, search and adopt pets. Thi
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -38,9 +38,10 @@ On the front-end admins should be able to:
 - View each pet profile and be able to change it
 - Be able to add a new pet
 
-### Screenshot
+### Screenshots
 
-![](./Screenshot_app.png)
+![](./screenshots/Screenshot_3.png)
+![](./screenshots/Screenshot_1.png)
 
 <!-- ### Links
 
@@ -53,15 +54,14 @@ On the front-end admins should be able to:
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-<!-- - Mobile-first workflow -->
 - React
 
 ### What I learned
 In this project I:
-- improvised with the design and UX/UI
-- learned how to structure the files and break components into several for better code readability
-- worked on a better variables naming and using less comments
-- learned how to write api reqests to connect to the server
+- Improvised with the design and UX/UI
+- Learned how to structure the files and break components into several for better code readability
+- Worked on a better variables naming and using less comments
+- Learned how to write api reqests to connect to the server
 
 ## Author
 
