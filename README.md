@@ -58,10 +58,10 @@ On the front-end admins should be able to:
 
 ### What I learned
 In this project I:
-- improvised with the design and UX/UI
-- learned how to structure the files and break components into several for better code readability
-- worked on a better variables naming and using less comments
-- learned how to write api reqests to connect to the server
+- Improvised with the design and UX/UI
+- Learned how to structure the files and break components into several for better code readability
+- Worked on a better variables naming and using less comments
+- Learned how to write api reqests to connect to the server
 
 ## Author
 
