@@ -40,7 +40,6 @@ On the front-end admins should be able to:
 
 ### Screenshots
 
-![](./screenshots/Screenshot_2.png)
 ![](./screenshots/Screenshot_1.png)
 
 <!-- ### Links
