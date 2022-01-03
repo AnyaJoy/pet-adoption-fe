@@ -7,7 +7,7 @@ function AllPets() {
 
   return appContext.allPets.map((pet, index) => {
     return (
-      <div>
+      <div key={pet.id}>
         <Link to={`/editpet/${pet.id}`} className="list-names">
           {pet.name}
         </Link>

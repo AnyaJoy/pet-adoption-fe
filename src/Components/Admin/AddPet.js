@@ -4,14 +4,13 @@ import AppContext from "../../Context/AppContext";
 import logo from "../../Pictures/pink-paw.png";
 import logoBlue from "../../Pictures/logo.png";
 import { addPet } from "../RequestsDB";
+import Loader from "../Loader";
 
 function AddPet() {
   const appContext = useContext(AppContext);
-
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [breed, setBreed] = useState("");
-  const [status, setStatus] = useState("");
   const [picture, setPicture] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
@@ -20,6 +19,8 @@ function AddPet() {
   const [bio, setBio] = useState("");
   const [dietery, setDietery] = useState("");
   const [picturePreviewURL, setPicturePreviewURL] = useState(logoBlue);
+  const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const token = JSON.parse(localStorage.getItem("token"));
   const headersConfig = {
     Authorization: `Bearer ${token}`,
@@ -27,13 +28,15 @@ function AddPet() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    appContext.setError(false); // in case there was an error alert before
 
     const form = new FormData();
     form.append("picture", picture);
     form.append("name", name);
     form.append("type", type);
     form.append("bio", bio);
-    form.append("adoption_status", status);
+    form.append("adoption_status", "Available"); // 'available' as default
     form.append("height", height);
     form.append("weight", weight);
     form.append("color", color);
@@ -41,20 +44,31 @@ function AddPet() {
     form.append("dietery", dietery);
     form.append("breed", breed);
 
-    addPet(form, appContext.setAllPets, headersConfig);
-
-    setName("");
-    setType("");
-    setBreed("");
-    setStatus("");
-    setPicture("");
-    setHeight("");
-    setWeight("");
-    setHypoallergenic("");
-    setBio("");
-    setDietery("");
-    setColor("");
-    setPicturePreviewURL(logoBlue);
+    addPet(form, appContext.setAllPets, headersConfig)
+      .then(() => {
+        setLoading(false);
+        setButtonDisabled(true);
+        appContext.setSuccessAlert(true);
+        setTimeout(() => {
+          setName("");
+          setType("");
+          setBreed("");
+          setPicture("");
+          setHeight("");
+          setWeight("");
+          setHypoallergenic("");
+          setBio("");
+          setDietery("");
+          setColor("");
+          setPicturePreviewURL(logoBlue);
+          appContext.setSuccessAlert(false);
+        }, 2000);
+      })
+      .catch((err) => {
+        appContext.setError(err.response.data);
+        setLoading(false);
+        return;
+      });
   };
 
   const handlePictureUpload = (event) => {
@@ -62,8 +76,39 @@ function AddPet() {
     setPicture(event.target.files[0]);
   };
 
+  useEffect(() => {
+    if (
+      name != "" ||
+      type != "" ||
+      breed != "" ||
+      picture != "" ||
+      height != "" ||
+      weight != "" ||
+      color != "" ||
+      hypoallergenic != "" ||
+      bio != "" ||
+      dietery != ""
+    ) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [
+    name,
+    type,
+    breed,
+    picture,
+    height,
+    weight,
+    color,
+    hypoallergenic,
+    bio,
+    dietery,
+  ]);
+
   return (
     <form onSubmit={onSubmit} className="add-pet-wrapper">
+      <div className="error-alert-add-edit-pet">{appContext.error}</div>
       <div className="add-pet-left-column">
         <div className="details-header">Details: </div>
         <div className="div-line"></div>
@@ -110,19 +155,10 @@ function AddPet() {
         <div className="add-pet-field">
           <img className="bullet-point-img" src={logo} />
           <input
+            type="number"
             required
             className="add-pet-input"
-            placeholder="Satus (ex. 'Available/Adopted/Fostered')"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          ></input>
-        </div>
-        <div className="add-pet-field">
-          <img className="bullet-point-img" src={logo} />
-          <input
-            required
-            className="add-pet-input"
-            placeholder="Height in cm (ex. 30)"
+            placeholder="Height in cm"
             value={height}
             onChange={(e) => setHeight(e.target.value)}
           ></input>
@@ -130,9 +166,10 @@ function AddPet() {
         <div className="add-pet-field">
           <img className="bullet-point-img" src={logo} />
           <input
+            type="number"
             required
             className="add-pet-input"
-            placeholder="Weight in kg (ex. 5)"
+            placeholder="Weight in kg"
             value={weight}
             onChange={(e) => setWeight(e.target.value)}
           ></input>
@@ -160,20 +197,33 @@ function AddPet() {
         <input
           type="file"
           onChange={handlePictureUpload}
-          id="file-input"
+          id="file-input-add"
           name="avatar"
           required
         />
-
-        <label className="upload-pic-button" for="file-input">
-          Upload Picture
-        </label>
+        {loading ? (
+          <Loader classname={"loader-edit-pet"} />
+        ) : (
+          <>
+            {appContext.successAlert ? (
+              <button className="add-pet-button-success">Saved!</button>
+            ) : (
+              <button
+                type="submit"
+                className={`add-pet-button-${!buttonDisabled}`}
+                disabled={buttonDisabled}
+              >
+                Add Pet
+              </button>
+            )}
+          </>
+        )}
       </div>
 
       <div className="add-pet-right-column">
-        <button type="submit" className="add-pet-button">
-          Add Pet
-        </button>
+        <label className="upload-pic-button" htmlFor="file-input-add">
+          Upload Picture
+        </label>
         <div className="add-pet-field">
           <textarea
             required
@@ -181,6 +231,7 @@ function AddPet() {
             placeholder="Bio (ex. The lovliest cat with a beautiful personality!)"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
+            maxLength={50}
           ></textarea>
         </div>
         <img src={picturePreviewURL} className="add-pet-img" />

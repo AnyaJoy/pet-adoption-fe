@@ -48,6 +48,9 @@ function Navbar() {
           <Link to="/" className={`home-button-${appContext.homePageIsActive}`}>
             Home
           </Link>
+          <Link to="/search" className={`home-button-${appContext.searchPageIsActive}`}>
+            Search
+          </Link>
           <LoginModal />
         </span>
       )}

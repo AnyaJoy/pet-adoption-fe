@@ -142,16 +142,37 @@ label {
   text-align-last: center;
 }
 
-.loader {
-  margin-top: 15px;
-  padding: 11.4px 11.4px;
+.error-alert-signup {
+  font-size: 1.2rem;
+  background-color: #f9399cff;
+  color: white;
+  border-radius: 3px;
+  text-align: center;
+  width: 88%;
+  position: absolute;
+}
+
+.error-alert-login-modal {
+  margin-top: -20px;
+  font-size: 1.2rem;
+  background-color: #f9399cff;
+  color: white;
+  border-radius: 3px;
+  text-align: center;
   width: 100%;
+  margin-bottom: 30px;
+}
+
+.loader-signup {
   background-color: #445cffff;
   border-radius: 5px;
   text-align-last: center;
+  padding: 11.3px 11.3px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
-.loader span {
+.loader-signup span {
   vertical-align: middle;
   border-radius: 100%;
 
@@ -159,41 +180,36 @@ label {
   width: 10px;
   height: 10px;
   margin: 3px 2px;
-  -webkit-animation: loader 0.8s linear infinite alternate;
-  animation: loader 0.8s linear infinite alternate;
+  -webkit-animation: loader-signup 0.8s linear infinite alternate;
+  animation: loader-signup 0.8s linear infinite alternate;
 }
-.loader span:nth-child(1) {
+.loader-signup span:nth-child(1) {
   -webkit-animation-delay: -1s;
   animation-delay: -1s;
   background: rgb(255, 255, 255, 0.6);
-  /* background: rgba(68, 92, 255, 0.6); */
 }
-.loader span:nth-child(2) {
+.loader-signup span:nth-child(2) {
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
   background: rgb(255, 255, 255, 0.8);
-  /* background: rgba(68, 92, 255, 0.8); */
 }
-.loader span:nth-child(3) {
+.loader-signup span:nth-child(3) {
   -webkit-animation-delay: -0.26666s;
   animation-delay: -0.26666s;
   background: rgb(255, 255, 255, 1);
-  /* background: rgba(68, 92, 255, 1); */
 }
-.loader span:nth-child(4) {
+.loader-signup span:nth-child(4) {
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
   background: rgb(255, 255, 255, 0.8);
-  /* background: rgba(68, 92, 255, 0.8); */
 }
-.loader span:nth-child(5) {
+.loader-signup span:nth-child(5) {
   -webkit-animation-delay: -1s;
   animation-delay: -1s;
   background: rgb(255, 255, 255, 0.4);
-  /* background: rgba(68, 92, 255, 0.4); */
 }
 
-@keyframes loader {
+@keyframes loader-signup {
   from {
     transform: scale(0, 0);
   }
@@ -201,7 +217,7 @@ label {
     transform: scale(1, 1);
   }
 }
-@-webkit-keyframes loader {
+@-webkit-keyframes loader-signup {
   from {
     -webkit-transform: scale(0, 0);
   }

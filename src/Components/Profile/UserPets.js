@@ -3,7 +3,7 @@ import { useState } from "react";
 import PetToggle from "./PetToggle";
 import PetsGroups from "./PetsGroups";
 
-function UserPets({ header, userViewedByAdmin }) {
+function UserPets({ header, userType, user }) {
   const [savedPetsSelected, setSavedPetsSelected] = useState(true);
 
   return (
@@ -18,17 +18,19 @@ function UserPets({ header, userViewedByAdmin }) {
 
       {savedPetsSelected ? (
         <PetsGroups
-          petsGroup="savedPets"
+          userType={userType}
+          user={user}
           messageForAdmin={"User doesn't have any pets saved."}
           messageForUser={"Currently you don't have any pets saved."}
-          userViewedByAdmin={userViewedByAdmin}
+          savedPetsSelected={savedPetsSelected}
         />
       ) : (
         <PetsGroups
-          petsGroup="fosteredPets"
+          userType={userType}
+          user={user}
           messageForAdmin={"User is not fostering any pets."}
           messageForUser={"Currently you are not fostering any pets."}
-          userViewedByAdmin={userViewedByAdmin}
+          savedPetsSelected={savedPetsSelected}
         />
       )}
     </div>

@@ -4,40 +4,50 @@ import Loader from "../Loader";
 import AppContext from "../../Context/AppContext";
 import { editUser } from "../RequestsDB";
 
-function ProfileUpdateForm({ bio, setBio }) {
+function ProfileUpdateForm({ bio }) {
   const appContext = useContext(AppContext);
 
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [newPassword, setNewPassword] = useState();
+  const [firstName, setFirstName] = useState(appContext.user.first_name);
+  const [lastName, setLastName] = useState(appContext.user.last_name);
+  const [email, setEmail] = useState(appContext.user.email);
+  const [password, setPassword] = useState(appContext.user.password_hash);
+  const [newPassword, setNewPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const token = JSON.parse(localStorage.getItem("token"));
   const headersConfig = {
     Authorization: `Bearer ${token}`,
   };
 
   useEffect(() => {
-    setFirstName(appContext.user.first_name);
-    setLastName(appContext.user.last_name);
-    setEmail(appContext.user.email);
-    setBio(appContext.user.bio);
-    setPassword(appContext.user.password_hash);
-  }, [appContext.user]);
+    appContext.setError(false); // in case there was an error alert perviously
 
-  useEffect(() => {
     if (newPassword) {
       setPassword(newPassword);
     } else {
       setPassword(appContext.user.password_hash);
     }
-  }, [newPassword]);
+
+    if (
+      firstName != appContext.user.first_name ||
+      lastName != appContext.user.last_name ||
+      email != appContext.user.email ||
+      newPassword != "" ||
+      bio != appContext.user.bio
+    ) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [newPassword, email, firstName, lastName, bio]);
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
+    appContext.setError(false);
+    setLoading(true);
+
+    //for UX
+    setTimeout(() => {
       const updatedUser = {
         first_name: firstName,
         last_name: lastName,
@@ -51,12 +61,20 @@ function ProfileUpdateForm({ bio, setBio }) {
         updatedUser,
         appContext.setUser,
         headersConfig
-      );
-
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
+      )
+        .then(() => {
+          setLoading(false);
+          appContext.setSuccessAlert(true);
+          setTimeout(() => {
+            appContext.setSuccessAlert(false);
+          }, 2000);
+        })
+        .catch((err) => {
+          setLoading(false);
+          appContext.setError(err.response.data);
+          return;
+        });
+    }, 600);
   };
 
   return (
@@ -91,6 +109,7 @@ function ProfileUpdateForm({ bio, setBio }) {
       <div className="input-update">New password</div>
 
       <input
+        minLength={6}
         className="single-input"
         type="password"
         placeholder="********"
@@ -99,11 +118,17 @@ function ProfileUpdateForm({ bio, setBio }) {
       ></input>
 
       {loading ? (
-        <Loader classname={"loader"} />
+        <Loader classname={"loader-profile"} />
       ) : (
-        <button type="submit" className={`save-button-${true}`}>
-          Save Changes
-        </button>
+        <>
+          {appContext.successAlert ? (
+            <button className="save-button-success">Saved!</button>
+          ) : (
+            <button type="submit" className={`save-button-${!buttonDisabled}`} disabled={buttonDisabled}>
+              Save Changes
+            </button>
+          )}
+        </>
       )}
     </form>
   );

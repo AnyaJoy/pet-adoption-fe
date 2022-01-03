@@ -1,73 +1,70 @@
-In development...
+# Getting Started with Create React App
 
-<!-- Deployed link: https://tweet-out.web.app -->
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Pet Adoption Project
+## Available Scripts
 
-A pet-adoption web platform, where users can sign up, search and adopt pets. This repository only contains front-end part of the project.
+In the project directory, you can run:
 
-## Table of contents
+### `npm start`
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshots](#screenshots)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Overview
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-### The challenge
+### `npm test`
 
-On the front-end users should be able to:
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-- View the Homepage (depending on auth status)
-- Sign up and login
-- Search pets based on type or advanced search parameters such as status or height of the pet
-- View a pet card to see the full information
-- Adopt, foster or save the pet for later
-- View and change their profile info in the Profile component, toggle between the pets they own or have saved
+### `npm run build`
 
-On the front-end admins should be able to:
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- View lists of users and pets on the dashboard
-- View each user and their info (name, email, pets they own or foster)
-- View each pet profile and be able to change it
-- Be able to add a new pet
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### Screenshots
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-![](./screenshots/Screenshot_3.png)
-![](./screenshots/Screenshot_1.png)
+### `npm run eject`
 
-<!-- ### Links
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-- Live Site URL: [tweet-out.web.app](https://tweet-out.web.app) -->
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## My process
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-### Built with
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- React
+## Learn More
 
-### What I learned
-In this project I:
-- Improvised with the design and UX/UI
-- Learned how to structure the files and break components into several for better code readability
-- Worked on a better variables naming and using less comments
-- Learned how to write api reqests to connect to the server
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-## Author
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Github Profile - @AnyaJoy
+### Code Splitting
 
-## Acknowledgments
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-This project was a part of Full-Stack Development course from ITC. They provided the technical plan! And overall support throughout the project.
+### Analyzing the Bundle Size
 
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

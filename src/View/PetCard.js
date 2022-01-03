@@ -4,66 +4,155 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useContext, useState } from "react";
 import AppContext from "../Context/AppContext";
 import logo from "../Pictures/pink-paw.png";
-import { getPet, savePet, fosterPet, adoptPet } from "../Components/RequestsDB";
+import {getPet, savePet, fosterPet, returnFosteredPet, adoptPet, unsavePet, returnAdoptedPet, checkPetStatus} from "../Components/RequestsDB";
 
 function PetCard() {
   const appContext = useContext(AppContext);
   const location = useLocation();
   const [pet, setPet] = useState(false);
   const [loginAlert, setLoginAlert] = useState(false);
-  const token = JSON.parse(localStorage.getItem("token"));
-  const headersConfig = {
-    Authorization: `Bearer ${token}`,
-  };
+  const [petFostered, setPetFostered] = useState("Foster");
+  const [petAdopted, setPetAdopted] = useState("Adopt");
+  const [petSaved, setPetSaved] = useState("Save ❤");
+  const [petOwned, setPetOwned] = useState(false);
 
   useEffect(() => {
     appContext.setLocation("/pet");
     var petId = location.pathname.replace("/pet/", "");
-    getPet(petId, setPet);
-  }, []);
+    getPet(petId)
+      .then((res) => {
+        setPet(res.data[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    checkPetStatus(
+      appContext.user.id,
+      petId,
+      appContext.headersConfig,
+      setPetSaved,
+      setPetFostered,
+      setPetAdopted
+    ).catch((err) => {
+      console.log(err);
+    });
+  }, [appContext.user]);
+
+  useEffect(() => {
+    if (pet.adoption_status == "Adopted" && petAdopted == "Adopt") {
+      return setPetOwned(true);
+    } else {
+      setPetOwned(false);
+    }
+
+    if (pet.adoption_status == "Fostered" && petFostered !== "Return") {
+      return setPetOwned(true);
+    } else {
+      setPetOwned(false);
+    }
+  }, [pet, petAdopted, petFostered]);
 
   const handleSave = async (e) => {
     e.preventDefault();
-    if (!appContext.user) {
-      showAlert();
-    }
-    try {
-      savePet(appContext.user.id, pet.id, headersConfig)
-    } catch (err) {
-      console.log(err);
+    showAlertIfNotLoggedIn();
+    if (petSaved == "Save ❤") {
+      savePet(appContext.user.id, pet.id, appContext.headersConfig, setPetSaved)
+        .then(() => {
+          setPetSaved("Unsave ❤");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      unsavePet(appContext.user.id, pet.id, appContext.headersConfig)
+        .then(() => {
+          setPetSaved("Save ❤");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
   const handleAdopt = async (e) => {
     e.preventDefault();
-    if (!appContext.user) {
-      showAlert();
-    }
-    try {
-      adoptPet(appContext.user.id, pet.id, headersConfig)
-    } catch (err) {
-      console.log(err);
+    showAlertIfNotLoggedIn();
+    if (petAdopted == "Adopt") {
+      if (petFostered == "Return") {
+        returnFosteredPet(appContext.user.id, pet.id, appContext.headersConfig)
+          .then(() => {
+            setPetFostered("Foster");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      adoptPet(appContext.user.id, pet.id, appContext.headersConfig, setPet)
+        .then(() => {
+          setPetAdopted("Return");
+          getPet(pet.id).then((pet) => {
+            setPet(pet.data[0]);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      returnAdoptedPet(
+        appContext.user.id,
+        pet.id,
+        appContext.headersConfig,
+        setPetAdopted,
+        setPet
+      )
+        .then(() => {
+          setPetAdopted("Adopt");
+          getPet(pet.id).then((pet) => {
+            setPet(pet.data[0]);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
   const handleFoster = async (e) => {
     e.preventDefault();
-    if (!appContext.user) {
-      showAlert();
-    }
-    try {
-      fosterPet(appContext.user.id, pet.id, headersConfig)
-    } catch (err) {
-      console.log(err);
+    showAlertIfNotLoggedIn();
+    if (petFostered == "Foster") {
+      fosterPet(appContext.user.id, pet.id, appContext.headersConfig)
+        .then(() => {
+          setPetFostered("Return");
+          getPet(pet.id).then((pet) => {
+            setPet(pet.data[0]);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      returnFosteredPet(appContext.user.id, pet.id, appContext.headersConfig)
+        .then(() => {
+          setPetFostered("Foster");
+          getPet(pet.id).then((pet) => {
+            setPet(pet.data[0]);
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
-  function showAlert() {
-    setLoginAlert(true);
-    setTimeout(() => {
-      setLoginAlert(false);
-    }, [2000]);
-  };
+  function showAlertIfNotLoggedIn() {
+    if (!appContext.user) {
+      setLoginAlert(true);
+      setTimeout(() => {
+        setLoginAlert(false);
+      }, [3000]);
+    }
+  }
 
   return (
     <div className="pet-page-wrapper">
@@ -109,18 +198,28 @@ function PetCard() {
             <img className="bullet-point-img" src={logo} /> &nbsp;Dietery
             restrictions: <span className="card-info">{pet.dietery}</span>
           </div>
-          <div className="buttons">
-            <button onClick={handleAdopt} className="pet-buttons">
-              Adopt
+          <div className={`show-buttons-${!petOwned}`}>
+            <button
+              disabled={petOwned}
+              onClick={handleAdopt}
+              className="pet-buttons"
+            >
+              {petAdopted}
             </button>
-            <button onClick={handleFoster} className="pet-buttons">
-              Foster
-            </button>
+            {petAdopted != "Return" && (
+              <button
+                disabled={petOwned}
+                onClick={handleFoster}
+                className="pet-buttons"
+              >
+                {petFostered}
+              </button>
+            )}
           </div>
         </div>
         <div className="pet-page-right-column">
           <button onClick={handleSave} className="save-pet-button">
-            Save ❤
+            {petSaved}
           </button>
           <span className="pet-bio">{pet.bio}</span>
           <img src={pet.picture} className="pet-img-big" />

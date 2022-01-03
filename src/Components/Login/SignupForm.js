@@ -7,17 +7,20 @@ import { signupUser } from "../RequestsDB";
 function LoginForm({ setProfileExists, setSignupSuccessful }) {
   const appContext = useContext(AppContext);
 
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [repassword, setRepassword] = useState();
+  const [repassword, setRepassword] = useState("");
 
   const handleSignup = async (e) => {
-    try {
-      e.preventDefault();
-      setLoading(true);
+    e.preventDefault();
+    setLoading(true);
+
+    //for UX
+    setTimeout(() => {
+      appContext.setError(false);
 
       const newUser = {
         first_name: firstName,
@@ -30,19 +33,22 @@ function LoginForm({ setProfileExists, setSignupSuccessful }) {
       };
 
       signupUser(newUser)
-
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-      setRepassword("");
-
-      setLoading(false);
-      setProfileExists(true);
-      setSignupSuccessful(true);
-    } catch (err) {
-      console.log(err);
-    }
+        .then(() => {
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setPassword("");
+          setRepassword("");
+          setLoading(false);
+          setProfileExists(true);
+          setSignupSuccessful(true);
+        })
+        .catch((err) => {
+          appContext.setError(err.response.data);
+          setLoading(false);
+          return;
+        });
+    }, 600);
   };
 
   function submitOnEnter(event) {
@@ -55,6 +61,7 @@ function LoginForm({ setProfileExists, setSignupSuccessful }) {
 
   return (
     <div className="signup-form-wrapper">
+      <div className="error-alert-signup">{appContext.error}</div>
       <div className="header-signup">Register now to continue!</div>
       <div className="signin-and-first-time-here-wrapper">
         <span className="signin-header">Sign up.</span>
@@ -64,6 +71,7 @@ function LoginForm({ setProfileExists, setSignupSuccessful }) {
             className="signup-link"
             onClick={() => {
               setProfileExists(true);
+              appContext.setError(false);
             }}
           >
             Sign In
@@ -109,6 +117,7 @@ function LoginForm({ setProfileExists, setSignupSuccessful }) {
         <div className="row-inputs-wrapper">
           <input
             required
+            minLength={6}
             className="row-input"
             type="password"
             placeholder="Your password"
@@ -118,6 +127,7 @@ function LoginForm({ setProfileExists, setSignupSuccessful }) {
           <input
             className="row-input"
             type="password"
+            minLength={6}
             placeholder="Your password"
             onChange={(e) => setRepassword(e.target.value)}
             value={repassword}
@@ -125,7 +135,7 @@ function LoginForm({ setProfileExists, setSignupSuccessful }) {
           />
         </div>
         {loading ? (
-          <Loader classname={"loader"} />
+          <Loader classname={"loader-signup"} />
         ) : (
           <button type="submit" className={`signup-button-${true}`}>
             Sign up

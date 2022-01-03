@@ -15,20 +15,25 @@ import { getAllPets, getUserByToken } from "./Components/RequestsDB";
 function App() {
   const [allUsers, setAllUsers] = useState([]);
   const [user, setUser] = useState(false);
-  const [location, setLocation] = useState();
+  const [location, setLocation] = useState("");
+  const [userViewedByAdmin, setUserViewedByAdmin] = useState(false);
   const [homePageIsActive, setHomePageActive] = useState(false);
   const [propfilePageIsActive, setProfilePageActive] = useState(false);
   const [adminPageIsActive, setAdminPageActive] = useState(false);
+  const [searchPageIsActive, setSearchPageActive] = useState(false);
   const [allPets, setAllPets] = useState([]);
-
+  const [petsToDisplay, setPetsToDisplay] = useState([]);
+  const [error, setError] = useState(false);
+  const [successAlert, setSuccessAlert] = useState(false);
   const token = JSON.parse(localStorage.getItem("token"));
   const headersConfig = {
     Authorization: `Bearer ${token}`,
   };
 
   useEffect(() => {
-    getUserByToken(headersConfig, setUser);
     getAllPets(setAllPets);
+    getAllPets(setPetsToDisplay);
+    getUserByToken(headersConfig, setUser);
   }, []);
 
   useEffect(() => {
@@ -36,13 +41,10 @@ function App() {
       location,
       setHomePageActive,
       setProfilePageActive,
-      setAdminPageActive
+      setAdminPageActive,
+      setSearchPageActive
     );
   }, [location]);
-
-  useEffect(() => {
-   console.log(user)
-  }, [user])
 
   return (
     <AppContext.Provider
@@ -53,24 +55,41 @@ function App() {
         setLocation: setLocation,
         homePageIsActive: homePageIsActive,
         propfilePageIsActive: propfilePageIsActive,
-        setAdminPageActive: setAdminPageActive,
         adminPageIsActive: adminPageIsActive,
+        searchPageIsActive: searchPageIsActive,
         allPets: allPets,
         setAllPets: setAllPets,
         allUsers: allUsers,
         setAllUsers: setAllUsers,
+        headersConfig: headersConfig,
+        userViewedByAdmin: userViewedByAdmin,
+        setUserViewedByAdmin: setUserViewedByAdmin,
+        error: error,
+        setError: setError,
+        petsToDisplay:petsToDisplay,
+        setPetsToDisplay:setPetsToDisplay,
+        successAlert: successAlert,
+        setSuccessAlert: setSuccessAlert,
       }}
     >
       <div className="App">
         <Router>
           <Navbar />
           <Route exact path="/" component={Home} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/user/:id" component={Profile} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/pet/:id" component={PetCard} />
-          <Route exact path="/editpet/:id" component={EditPetCard} />
-          <Route exact path="/dashboard" component={Admin} />
+          {user && (
+            <>
+              <Route exact path="/profile" component={Profile} />
+              {user.type == "Admin" && (
+                <>
+                  <Route exact path="/dashboard" component={Admin} />
+                  <Route exact path="/editpet/:id" component={EditPetCard} />
+                  <Route exact path="/user/:id" component={Profile} />
+                </>
+              )}
+            </>
+          )}
         </Router>
       </div>
     </AppContext.Provider>

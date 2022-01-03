@@ -3,6 +3,7 @@ import SearchForm from "../Components/Search/SearchForm";
 import PetsList from "../Components/PetsList";
 import { useContext, useEffect } from "react";
 import AppContext from "../Context/AppContext";
+import { useState } from "react/cjs/react.development";
 
 function Search() {
   const appContext = useContext(AppContext);
@@ -19,9 +20,6 @@ function Search() {
       </div>
       <div className="search-form-wrapper">
         <SearchForm />
-      </div>
-      <div className="pets-list-wrapper">
-        <PetsList petsArray={appContext.allPets} cardType="vertical" />
       </div>
     </div>
   );

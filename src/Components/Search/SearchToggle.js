@@ -1,9 +1,7 @@
 import "../../Styles/SearchToggle.css";
-import SearchParams from "./SearchParams";
 
-function SearchToggle({advancedSearchSelected, selectAdvancedSearch}) {
+function SearchToggle({ advancedSearchSelected, selectAdvancedSearch }) {
   return (
-    <div className="toggle-wrapper">
       <span className="toggler">
         <span
           className={`toggle-option-${!advancedSearchSelected}`}
@@ -23,12 +21,6 @@ function SearchToggle({advancedSearchSelected, selectAdvancedSearch}) {
           Advanced
         </span>
       </span>
-      {advancedSearchSelected && (
-          <span className="serach-params">
-            <SearchParams />
-          </span>
-        )}
-    </div>
   );
 }
 

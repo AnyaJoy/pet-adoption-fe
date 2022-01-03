@@ -1,5 +1,6 @@
 .pet-card-wrapper-horizontal {
   width: 100%;
+  height: fit-content;
   padding: 15px;
   margin-top: 13px;
   margin-bottom: 13px;
@@ -8,14 +9,8 @@
   display: flex;
   position: relative;
   justify-content: space-evenly;
-
   box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
     rgba(219, 218, 218, 0.9) 0px 0px 0px 1px;
-}
-
-.pet-card-wrapper-horizontal:hover {
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .pet-card-wrapper-vertical {
@@ -30,11 +25,6 @@
     rgba(219, 218, 218, 0.9) 0px 0px 0px 1px;
 
   position: relative;
-}
-
-.pet-card-wrapper-vertical:hover {
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .pet-info-horizontal {

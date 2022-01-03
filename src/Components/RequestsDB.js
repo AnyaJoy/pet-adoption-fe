@@ -1,156 +1,182 @@
 import axios from "axios";
 
-const getAllPets = async (setAllPets) => {
-  try {
-    const res = await axios.get("http://localhost:3006/pets").then((res) => {
-      setAllPets(res.data);
-    });
-  } catch (err) {
-    console.log(err);
-  }
+const signupUser = async (newUser) => {
+  await axios.post("http://localhost:3006/users/signup", newUser);
 };
 
-const getPet = async (petId, setPet) => {
-  try {
-    const res = await axios
-      .get(`http://localhost:3006/pets/${petId}`)
-      .then((res) => {
-        setPet(res.data[0]);
-      });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const editPet = async (petId, newObject, setPet, headersConfig) => {
-  try {
-    const res = await axios
-      .put(`http://localhost:3006/pets/edit/${petId}`, newObject, {headers: headersConfig})
-      .then(() => {
-        getPet(petId, setPet);
-      });
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const addPet = async (newPet, setAllPets, headersConfig) => {
-  try {
-    const res = await axios
-      .post("http://localhost:3006/pets/add", newPet, {headers: headersConfig})
-      .then(() => {
-        getAllPets(setAllPets);
-      });
-  } catch (err) {
-    console.log(err);
-  }
+const loginUser = async (user) => {
+  return await axios.post("http://localhost:3006/users/login", user);
 };
 
 const getAllUsers = async (setAllUsers, headersConfig) => {
-  try {
-    const res = await axios
+  await axios
       .get("http://localhost:3006/users/", { headers: headersConfig })
       .then((res) => {
         setAllUsers(res.data);
-      });
-  } catch (err) {
-    console.log(err);
-  }
+      }).catch((err)=>{console.log(err)})
 };
 
 const getUserById = async (userId, headersConfig, setUser) => {
-  try {
-    const res = await axios
-      .get(`http://localhost:3006/users/${userId}`, {headers: headersConfig})
-      .then((res) => {
+  await axios
+    .get(`http://localhost:3006/users/${userId}`, { headers: headersConfig })
+    .then((res) => {
         setUser(res.data[0]);
-      });
-  } catch (err) {
-    console.log(err);
-  }
+    }).catch((err)=>{console.log(err)})
 };
 
 const getUserByToken = async (headersConfig, setUser) => {
-  try {
-    const res = await axios
-      .get("http://localhost:3006/users/currentuser", {
-        headers: headersConfig,
-      })
-      .then((res) => {
-        setUser(res.data[0]);
-      });
-  } catch (err) {
-    console.log(err);
-    setUser(false)
-  }
-};
-
-const signupUser = async (newUser) => {
-  try {
-    const res = await axios.post("http://localhost:3006/users/signup", newUser);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const loginUser = async (user, setUser) => {
-  try {
-    const res = await axios.post("http://localhost:3006/users/login", user);
-    if (res.data.token) {
-      localStorage.setItem("token", JSON.stringify(res.data.token));
-      setUser(res.data.user);
-    }
-  } catch (err) {
-    console.log(err);
-  }
+  await axios
+    .get("http://localhost:3006/users/currentuser", {
+      headers: headersConfig,
+    })
+    .then((res) => {
+      setUser(res.data[0]);
+    }).catch((err)=>{console.log(err);
+      setUser(false);
+      return})
 };
 
 const editUser = async (userId, newObject, setUser, headersConfig) => {
-  try {
-    const res = await axios
-      .put(`http://localhost:3006/users/edit/${userId}`, newObject, {headers: headersConfig})
-      .then(() => {
-        getUserByToken(headersConfig, setUser);
-      });
-  } catch (err) {
-    console.log(err);
-  }
+  await axios
+    .put(`http://localhost:3006/users/${userId}`, newObject, {
+      headers: headersConfig,
+    })
+    .then(() => {
+      getUserByToken(headersConfig, setUser);
+    });
+};
+
+const getAllPets = async (setAllPets) => {
+  await axios.get("http://localhost:3006/pets").then((res) => {
+    setAllPets(res.data);
+  }).catch((err)=>{console.log(err)})  
+};
+
+const searchPets = async (searchParameters, setPets) => {
+  return await axios
+    .post("http://localhost:3006/pets/search", searchParameters)
+    .then((res) => {
+      setPets(res.data);
+    }).catch((err)=>{console.log(err)})
+};
+
+const getPet = async (petId) => {
+  return await axios.get(`http://localhost:3006/pets/${petId}`);
+};
+
+const editPet = async (petId, newObject, headersConfig) => {
+  await axios
+    .put(`http://localhost:3006/pets/${petId}`, newObject, {
+      headers: headersConfig,
+    })
+};
+
+const addPet = async (newPet, setAllPets, headersConfig) => {
+  await axios
+    .post("http://localhost:3006/pets/", newPet, {
+      headers: headersConfig,
+    })
+    .then(() => {
+      getAllPets(setAllPets);
+    });
 };
 
 const savePet = async (userId, petId, headersConfig) => {
-  try {
-    const res = await axios
-      // .put(`http://localhost:3006/users/edit/${userId}`, newObject, {headers: headersConfig})
-      .then(() => {
-        // getUserByToken(headersConfig, setUser);
-      });
-  } catch (err) {
-    console.log(err);
-  }
+  await axios.post(
+    `http://localhost:3006/pets/save/${userId}/${petId}`,
+    {},
+    { headers: headersConfig }
+  );
 };
 
-const fosterPet = async (userId, petId, headersConfig) => {
-  try {
-    const res = await axios
-      // .put(`http://localhost:3006/users/edit/${userId}`, newObject, {headers: headersConfig})
-      .then(() => {
-        // getUserByToken(headersConfig, setUser);
-      });
-  } catch (err) {
-    console.log(err);
-  }
+const unsavePet = async (userId, petId, headersConfig) => {
+  await axios.delete(`http://localhost:3006/pets/save/${userId}/${petId}`, {
+    headers: headersConfig,
+  });
 };
 
 const adoptPet = async (userId, petId, headersConfig) => {
-  try {
-    const res = await axios
-      // .put(`http://localhost:3006/users/edit/${userId}`, newObject, {headers: headersConfig})
-      .then(() => {
-        // getUserByToken(headersConfig, setUser);
+  await axios.post(
+    `http://localhost:3006/pets/adopt/${userId}/${petId}`,
+    {},
+    { headers: headersConfig }
+  );
+};
+
+const returnAdoptedPet = async (userId, petId, headersConfig) => {
+  await axios.delete(`http://localhost:3006/pets/adopt/${userId}/${petId}`,{headers: headersConfig});
+};
+
+const fosterPet = async (userId, petId, headersConfig) => {
+  await axios.post(`http://localhost:3006/pets/foster/${userId}/${petId}`,{}, {headers: headersConfig});
+};
+
+const returnFosteredPet = async (userId, petId, headersConfig) => {
+  await axios.delete(`http://localhost:3006/pets/foster/${userId}/${petId}`, {headers: headersConfig});
+};
+
+const checkPetStatus = async (
+  userId,
+  petId,
+  headersConfig,
+  setPetSaved,
+  setPetFostered,
+  setPetAdopted
+) => {
+  await axios
+    .get(`http://localhost:3006/pets/checkstatus/${userId}/${petId}`, {
+      headers: headersConfig,
+    })
+    .then((res) => {
+      if (res.data.adoptedPet[0]) {
+        setPetAdopted("Return");
+      }
+      if (res.data.fosteredPet[0]) {
+        setPetFostered("Return");
+      }
+      if (res.data.savedPet[0]) {
+        setPetSaved("Unsave ❤");
+      }
+    });
+};
+
+const getSavedPetsByUserId = async (userId, headersConfig) => {
+  let savedPets = [];
+  let requests = [];
+  await axios
+    .get(`http://localhost:3006/pets/saved/user/${userId}`, {
+      headers: headersConfig,
+    })
+    .then((petsIds) => {
+      petsIds.data.forEach((pet) => {
+        requests.push(getPet(pet.petId));
       });
-  } catch (err) {
-    console.log(err);
-  }
+    });
+  return new Promise((resolve) => {
+    Promise.all(requests)
+      .then((promises) => promises.forEach((p) => savedPets.push(p.data[0])))
+      .then(() => resolve(savedPets));
+  });
+};
+
+const getOwnedPetsByUserId = async (userId, headersConfig) => {
+  let ownedPets = [];
+  let requests = [];
+  await axios
+    .get(`http://localhost:3006/pets/owned/user/${userId}`, {
+      headers: headersConfig,
+    })
+    .then((petsIds) => {
+      petsIds.data.forEach((pet) => {
+        let ownedPet = getPet(pet.petId);
+        requests.push(ownedPet);
+      });
+    });
+  return new Promise((resolve) => {
+    Promise.all(requests)
+      .then((promises) => promises.forEach((p) => ownedPets.push(p.data[0])))
+      .then(() => resolve(ownedPets));
+  });
 };
 
 export {
@@ -165,6 +191,13 @@ export {
   loginUser,
   editUser,
   savePet,
+  unsavePet,
   fosterPet,
+  returnFosteredPet,
   adoptPet,
+  returnAdoptedPet,
+  checkPetStatus,
+  getSavedPetsByUserId,
+  getOwnedPetsByUserId,
+  searchPets,
 };

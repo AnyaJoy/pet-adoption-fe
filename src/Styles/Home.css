@@ -88,10 +88,6 @@
   font-weight: bold;
 }
 
-/* .search-form-wrapper{
-
-} */
-
 .pets-list-wrapper {
   padding-top: 40px;
   display: flex;
@@ -102,13 +98,4 @@
   width: 80%;
   margin: auto;
   color: #525252ff;
-}
-
-.under-search-text {
-  color: rgba(82, 82, 82, 0.644)
-}
-
-.link-to-profile {
-  color:#F9399CFF;
-  text-decoration: none;
 }

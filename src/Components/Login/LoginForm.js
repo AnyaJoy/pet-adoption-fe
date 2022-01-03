@@ -11,29 +11,36 @@ function LoginForm({
 }) {
   const appContext = useContext(AppContext);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogIn = async (e) => {
-    try {
-      e.preventDefault();
-      setLoading(true);
+    e.preventDefault();
+    setLoading(true);
 
+    //for UX
+    setTimeout(() => {
+      appContext.setError(false);
       const user = {
         email: email,
         password: password,
       };
 
-      loginUser(user, appContext.setUser);
-
-      setEmail("");
-      setPassword("");
-
-      setSignupSuccessful(false);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
+      loginUser(user)
+        .then((res) => {
+          localStorage.setItem("token", JSON.stringify(res.data.token));
+          appContext.setUser(res.data.user);
+          setEmail("");
+          setPassword("");
+          setSignupSuccessful(false);  // in case of user coming from sign-up
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          appContext.setError(err.response.data);
+          return;
+        });
+    }, 600);
   };
 
   function submitOnEnter(event) {
@@ -46,6 +53,7 @@ function LoginForm({
 
   return (
     <div className="login-form-wrapper">
+      <div className="error-alert-login-modal">{appContext.error}</div>
       <div className={`signup-successful-${signupSuccessful}`}>
         Signed up successfully. Please sign in!
       </div>
@@ -62,6 +70,7 @@ function LoginForm({
             className="signup-link"
             onClick={() => {
               setProfileExists(false);
+              appContext.setError(false);
             }}
           >
             Sign Up
@@ -89,7 +98,7 @@ function LoginForm({
         ></input>
 
         {loading ? (
-          <Loader classname={"loader"} />
+          <Loader classname={"loader-signup"} />
         ) : (
           <button type="submit" className={`signin-button-${true}`}>
             Sign in

@@ -5,6 +5,7 @@ function PetToggle({savedPetsSelected, setSavedPetsSelected}) {
           className={`toggle-option-${!savedPetsSelected}`}
           onClick={() => {
             setSavedPetsSelected(false);
+            
           }}
         >
           Pets

@@ -1,17 +1,17 @@
 import "../Styles/PetsList.css";
-import { useContext, useState } from "react";
-import AppContext from "../Context/AppContext";
+// import { useContext, useState } from "react";
+// import AppContext from "../Context/AppContext";
 import logo from "../Pictures/pink-paw.png";
 import { Link } from "react-router-dom";
 
 function PetsList({ petsArray, cardType }) {
-  const appContext = useContext(AppContext);
-
-  const openPetCard = () => {};
-
-  return petsArray.map((pet, index) => {
+  // const appContext = useContext(AppContext);
+  return petsArray.map((pet) => {
     return (
-      <span key={pet.id} className={`pet-card-wrapper-${cardType}`}>
+      <span
+        key={pet.id}
+        className={`pet-card-wrapper-${cardType}`}
+      >
         <img className="pet-img" src={pet.picture}></img>
         <div className={`pet-info-${cardType}`}>
           <div className="pet-name">{pet.name}</div>
@@ -31,7 +31,7 @@ function PetsList({ petsArray, cardType }) {
             </div>
             <div className="card-field-label">
               <img className="bullet-point-img" src={logo} /> &nbsp;Weight:{" "}
-              <span className="card-info">{pet.weight}lb</span>
+              <span className="card-info">{pet.weight}kg</span>
             </div>
           </div>
           <Link
