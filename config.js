@@ -1,1 +1,1 @@
-export const URLrequests = process.env.NODE_ENV == 'production' ? "www.superwebsite.com" : "http://localhost:3001"
+export const URLrequests = process.env.NODE_ENV == 'production' ? "https://friendly-bassi-d66dd9.netlify.app" : "http://localhost:3006"

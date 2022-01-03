@@ -36,7 +36,7 @@ function AddPet() {
     form.append("name", name);
     form.append("type", type);
     form.append("bio", bio);
-    form.append("adoption_status", "Available"); // 'available' as default
+    form.append("adoption_status", "Available"); // 'available' as default (move to back-end)
     form.append("height", height);
     form.append("weight", weight);
     form.append("color", color);
