@@ -54,6 +54,7 @@ function ProfileUpdateForm({ bio }) {
         email: email,
         password: password,
         bio: bio,
+        picture: "picture"
       };
 
       editUser(
