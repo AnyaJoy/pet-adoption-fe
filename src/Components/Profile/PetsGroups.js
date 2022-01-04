@@ -27,33 +27,27 @@ function PetsGroups({
 
   useEffect(() => {
     setPetsToDisplay(false);
-
-    if (savedPetsSelected) {
-      //fetching saved pets
-      getSavedPetsByUserId(user.id, appContext.headersConfig)
-        .then((savedPets) => {
-          if (savedPets.length != 0) {
-            setPetsToDisplay(savedPets);
-          } else {
-            setPetsToDisplay(false);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      getOwnedPetsByUserId(user.id, appContext.headersConfig)
-      .then((ownedPets) => {
-        if (ownedPets.length != 0) {
-          setPetsToDisplay(ownedPets);
-        } else {
-          setPetsToDisplay(false);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    }
+    try {
+      if (savedPetsSelected) {   //fetching saved pets
+        getSavedPetsByUserId(user.id, appContext.headersConfig)
+          .then((savedPets) => {
+            if (savedPets.length != 0) {
+              setPetsToDisplay(savedPets);
+            } else {
+              setPetsToDisplay(false);
+            }
+          })
+      } else {
+        getOwnedPetsByUserId(user.id, appContext.headersConfig) //fetching owned pets
+          .then((ownedPets) => {
+            if (ownedPets.length != 0) {
+              setPetsToDisplay(ownedPets);
+            } else {
+              setPetsToDisplay(false);
+            }
+          })
+      }
+    } catch(err){console.log(err)}
   }, [user, savedPetsSelected]);
 
   return (

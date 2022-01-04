@@ -14,12 +14,12 @@
 }
 
 .loader {
-  margin-top: 15px;
-  padding: 10.3px 10.3px;
-  width: 100%;
-  background-color: #445cffff;
-  border-radius: 5px;
-  text-align-last: center;
+  height: 80vh;
+  /* background-color: rgb(169, 174, 207); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: 70px; */
 }
 
 .loader span {
@@ -27,8 +27,8 @@
   border-radius: 100%;
 
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   margin: 3px 2px;
   -webkit-animation: loader 0.8s linear infinite alternate;
   animation: loader 0.8s linear infinite alternate;
@@ -36,27 +36,27 @@
 .loader span:nth-child(1) {
   -webkit-animation-delay: -1s;
   animation-delay: -1s;
-  background: rgb(255, 255, 255, 0.6);
+  background: #445cffff;
 }
 .loader span:nth-child(2) {
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
-  background: rgb(255, 255, 255, 0.8);
+  background: #445cffff;
 }
 .loader span:nth-child(3) {
   -webkit-animation-delay: -0.26666s;
   animation-delay: -0.26666s;
-  background: rgb(255, 255, 255, 1);
+  background: #445cffff;
 }
 .loader span:nth-child(4) {
   -webkit-animation-delay: -0.8s;
   animation-delay: -0.8s;
-  background: rgb(255, 255, 255, 0.8);
+  background: #445cffff;
 }
 .loader span:nth-child(5) {
   -webkit-animation-delay: -1s;
   animation-delay: -1s;
-  background: rgb(255, 255, 255, 0.4);
+  background: #445cffff;
 }
 
 @keyframes loader {

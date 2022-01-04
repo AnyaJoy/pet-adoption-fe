@@ -17,38 +17,32 @@ function LoginForm({ setProfileExists, setSignupSuccessful }) {
   const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
+    appContext.setError(false); // in case there was one displayed before
 
-    //for UX
-    setTimeout(() => {
-      appContext.setError(false);
+    const newUser = {
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      password: password,
+      repassword: repassword
+    };
 
-      const newUser = {
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        password: password,
-        repassword: repassword,
-        type: "User",
-        bio: "Change your bio...",
-      };
-
-      signupUser(newUser)
-        .then(() => {
-          setFirstName("");
-          setLastName("");
-          setEmail("");
-          setPassword("");
-          setRepassword("");
-          setLoading(false);
-          setProfileExists(true);
-          setSignupSuccessful(true);
-        })
-        .catch((err) => {
-          appContext.setError(err.response.data);
-          setLoading(false);
-          return;
-        });
-    }, 600);
+    signupUser(newUser)
+      .then(() => {
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setRepassword("");
+        setLoading(false);
+        setProfileExists(true);
+        setSignupSuccessful(true);
+      })
+      .catch((err) => {
+        appContext.setError(err.response.data);
+        setLoading(false);
+        return;
+      });
   };
 
   function submitOnEnter(event) {

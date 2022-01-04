@@ -1,5 +1,4 @@
 import axios from "axios";
-// import env from "react-dotenv";
 const URLrequests = process.env.REACT_APP_URL_REQUESTS;
 
 const signupUser = async (newUser) => {

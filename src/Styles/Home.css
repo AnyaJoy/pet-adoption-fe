@@ -2,7 +2,12 @@
   display: flex;
   width: 100%;
   justify-content: space-around;
-  padding: 30px;
+  padding: 0px 30px 30px 30px;
+}
+
+.home-page-logged-out-wrapper {
+  padding-top: 30px;
+  display: flex;
 }
 
 .left-column {
@@ -51,6 +56,7 @@
 
 .home-page-logged-in-wrapper {
   width: 100%;
+  padding-top: 30px;
 }
 
 .welcome-header-logged-in {

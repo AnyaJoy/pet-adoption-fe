@@ -1,13 +1,11 @@
 import "../Styles/PetsList.css";
-// import { useContext, useState } from "react";
-// import AppContext from "../Context/AppContext";
 import logo from "../Pictures/pink-paw.png";
 import { Link } from "react-router-dom";
 
 function PetsList({ petsArray, cardType }) {
-  // const appContext = useContext(AppContext);
   return petsArray.map((pet) => {
     return (
+      <>
       <span
         key={pet.id}
         className={`pet-card-wrapper-${cardType}`}
@@ -42,6 +40,7 @@ function PetsList({ petsArray, cardType }) {
           </Link>
         </div>
       </span>
+      </>
     );
   });
 }

@@ -36,7 +36,6 @@ function AddPet() {
     form.append("name", name);
     form.append("type", type);
     form.append("bio", bio);
-    form.append("adoption_status", "Available"); // 'available' as default (move to back-end)
     form.append("height", height);
     form.append("weight", weight);
     form.append("color", color);
@@ -49,20 +48,18 @@ function AddPet() {
         setLoading(false);
         setButtonDisabled(true);
         appContext.setSuccessAlert(true);
-        setTimeout(() => {
-          setName("");
-          setType("");
-          setBreed("");
-          setPicture("");
-          setHeight("");
-          setWeight("");
-          setHypoallergenic("");
-          setBio("");
-          setDietery("");
-          setColor("");
-          setPicturePreviewURL(logoBlue);
-          appContext.setSuccessAlert(false);
-        }, 2000);
+        setName("");
+        setType("");
+        setBreed("");
+        setPicture("");
+        setHeight("");
+        setWeight("");
+        setHypoallergenic("");
+        setBio("");
+        setDietery("");
+        setColor("");
+        setPicturePreviewURL(logoBlue);
+        appContext.setSuccessAlert(false);
       })
       .catch((err) => {
         appContext.setError(err.response.data);
@@ -201,6 +198,7 @@ function AddPet() {
           name="avatar"
           required
         />
+        
         {loading ? (
           <Loader classname={"loader-edit-pet"} />
         ) : (

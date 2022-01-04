@@ -22,32 +22,21 @@ function SearchForm() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    // if (
-    //   name != "" ||
-    //   typeSelected != false ||
-    //   weightSelected != false ||
-    //   heightSelected != false ||
-    //   statusSelected != false
-    // ) {
     setLoading(true);
 
-    //for UX
-    setTimeout(() => {
-      const searchParameters = {
-        name: `%${name}%`, //syntax for sql (but protected from injections)
-        type: typeSelected.value,
-        adoption_status: statusSelected.value,
-        weight: weightSelected.value,
-        height: heightSelected.value,
-      };
+    const searchParameters = {
+      name: `%${name}%`, //syntax for sql (but protected from injections)
+      type: typeSelected.value,
+      adoption_status: statusSelected.value,
+      weight: weightSelected.value,
+      height: heightSelected.value,
+    };
 
-      searchPets(searchParameters, appContext.setPetsToDisplay).catch((err) => {
-        console.log(err);
-      });
+    searchPets(searchParameters, appContext.setPetsToDisplay).catch((err) => {
+      console.log(err);
+    });
 
-      setLoading(false);
-    }, 600);
-    // }
+    setLoading(false);
   };
 
   function submitOnEnter(event) {
@@ -71,6 +60,16 @@ function SearchForm() {
       setButtonDisabled(true);
     }
   }, [name, typeSelected, statusSelected, weightSelected, heightSelected]);
+
+  useEffect(() => {
+    // clearing params when going back to basic search
+    if (!advancedSearchSelected) {
+      setName("");
+      setWeight([]);
+      setHeight([]);
+      setStatus([]);
+    }
+  }, [advancedSearchSelected]);
 
   return (
     <>
@@ -128,7 +127,7 @@ function SearchForm() {
         {appContext.petsToDisplay.length != 0 ? (
           <PetsList petsArray={appContext.petsToDisplay} cardType="vertical" />
         ) : (
-          <div>No pets found with given criteria :(</div>
+          <div id="no-pets-found">No pets found with given criteria</div>
         )}
       </div>
     </>

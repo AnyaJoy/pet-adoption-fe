@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../Pictures/logo.png"
+import logo from "../../Pictures/logo.png";
 
 function HomeUserLoggedOut() {
   return (
-    <>
+    <div className="home-page-logged-out-wrapper">
       <div className="left-column">
         <img className="logo" src={logo} />
         <div className="quote">
@@ -35,7 +35,7 @@ function HomeUserLoggedOut() {
           now!
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

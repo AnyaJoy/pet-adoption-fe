@@ -18,29 +18,26 @@ function LoginForm({
     e.preventDefault();
     setLoading(true);
 
-    //for UX
-    setTimeout(() => {
-      appContext.setError(false);
-      const user = {
-        email: email,
-        password: password,
-      };
+    appContext.setError(false);
+    const user = {
+      email: email,
+      password: password,
+    };
 
-      loginUser(user)
-        .then((res) => {
-          localStorage.setItem("token", JSON.stringify(res.data.token));
-          appContext.setUser(res.data.user);
-          setEmail("");
-          setPassword("");
-          setSignupSuccessful(false);  // in case of user coming from sign-up
-          setLoading(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-          appContext.setError(err.response.data);
-          return;
-        });
-    }, 600);
+    loginUser(user)
+      .then((res) => {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        appContext.setUser(res.data.user);
+        setEmail("");
+        setPassword("");
+        setSignupSuccessful(false); // in case of user coming from sign-up
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        appContext.setError(err.response.data);
+        return;
+      });
   };
 
   function submitOnEnter(event) {
@@ -98,7 +95,7 @@ function LoginForm({
         ></input>
 
         {loading ? (
-          <Loader classname={"loader-signup"} />
+          <Loader classname={"loader-signin"} />
         ) : (
           <button type="submit" className={`signin-button-${true}`}>
             Sign in
