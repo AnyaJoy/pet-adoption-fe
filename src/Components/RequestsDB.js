@@ -1,4 +1,5 @@
 import axios from "axios";
+import { URLrequests } from "../../config";
 
 const signupUser = async (newUser) => {
   await axios.post(
@@ -8,10 +9,7 @@ const signupUser = async (newUser) => {
 };
 
 const loginUser = async (user) => {
-  return await axios.post(
-    "https://ipet-adoption-service.herokuapp.com/users/login",
-    user
-  );
+  return await axios.post(`${URLrequests}/users/login`, user);
 };
 
 const getAllUsers = async (setAllUsers, headersConfig) => {

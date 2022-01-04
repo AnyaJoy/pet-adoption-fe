@@ -1,1 +1,1 @@
-export const URLrequests = process.env.NODE_ENV == 'production' ? "https://friendly-bassi-d66dd9.netlify.app" : "http://localhost:3006"
+export const URLrequests = process.env.NODE_ENV == 'production' ? "https://ipet-adoption.herokuapp.com" : "http://localhost:3006"
