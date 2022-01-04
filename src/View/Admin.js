@@ -5,6 +5,7 @@ import AddPet from "../Components/Admin/AddPet";
 import AllPets from "../Components/Admin/AllPets";
 import AllUsers from "../Components/Admin/AllUsers";
 import Loader from "../Components/Loader";
+import { getAllPets } from "../Components/RequestsDB";
 
 function Admin() {
   const appContext = useContext(AppContext);
@@ -15,6 +16,7 @@ function Admin() {
     setTimeout(() => {
       setPageLoading(false);
     }, 600);
+    getAllPets(appContext.setAllPets);
   }, []);
 
   return (
