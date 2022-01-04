@@ -11,6 +11,7 @@ import PetCard from "./View/PetCard";
 import Admin from "./View/Admin";
 import EditPetCard from "./View/EditPetCard";
 import { getAllPets, getUserByToken } from "./Components/RequestsDB";
+require("dotenv").config();
 
 function App() {
   const [allUsers, setAllUsers] = useState([]);
