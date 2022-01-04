@@ -1,5 +1,5 @@
 import axios from "axios";
-import { URLrequests } from "../../config";
+import { URLrequests } from "../config";
 
 const signupUser = async (newUser) => {
   await axios.post(
@@ -14,7 +14,7 @@ const loginUser = async (user) => {
 
 const getAllUsers = async (setAllUsers, headersConfig) => {
   await axios
-    .get("https://ipet-adoption-service.herokuapp.com/users/", {
+    .get(`${URLrequests}/users/`, {
       headers: headersConfig,
     })
     .then((res) => {
@@ -27,7 +27,7 @@ const getAllUsers = async (setAllUsers, headersConfig) => {
 
 const getUserById = async (userId, headersConfig, setUser) => {
   await axios
-    .get(`https://ipet-adoption-service.herokuapp.com/users/${userId}`, {
+    .get(`${URLrequests}/users/${userId}`, {
       headers: headersConfig,
     })
     .then((res) => {
@@ -40,7 +40,7 @@ const getUserById = async (userId, headersConfig, setUser) => {
 
 const getUserByToken = async (headersConfig, setUser) => {
   await axios
-    .get("https://ipet-adoption-service.herokuapp.com/users/currentuser", {
+    .get(`${URLrequests}/users/currentuser`, {
       headers: headersConfig,
     })
     .then((res) => {
@@ -55,13 +55,9 @@ const getUserByToken = async (headersConfig, setUser) => {
 
 const editUser = async (userId, newObject, setUser, headersConfig) => {
   await axios
-    .put(
-      `https://ipet-adoption-service.herokuapp.com/users/${userId}`,
-      newObject,
-      {
-        headers: headersConfig,
-      }
-    )
+    .put(`${URLrequests}/users/${userId}`, newObject, {
+      headers: headersConfig,
+    })
     .then(() => {
       getUserByToken(headersConfig, setUser);
     });
@@ -69,7 +65,7 @@ const editUser = async (userId, newObject, setUser, headersConfig) => {
 
 const getAllPets = async (setAllPets) => {
   await axios
-    .get("https://ipet-adoption-service.herokuapp.com/pets")
+    .get(`${URLrequests}/pets`)
     .then((res) => {
       setAllPets(res.data);
     })
@@ -80,10 +76,7 @@ const getAllPets = async (setAllPets) => {
 
 const searchPets = async (searchParameters, setPets) => {
   return await axios
-    .post(
-      "https://ipet-adoption-service.herokuapp.com/pets/search",
-      searchParameters
-    )
+    .post(`${URLrequests}/pets/search`, searchParameters)
     .then((res) => {
       setPets(res.data);
     })
@@ -93,24 +86,18 @@ const searchPets = async (searchParameters, setPets) => {
 };
 
 const getPet = async (petId) => {
-  return await axios.get(
-    `https://ipet-adoption-service.herokuapp.com/pets/${petId}`
-  );
+  return await axios.get(`${URLrequests}/pets/${petId}`);
 };
 
 const editPet = async (petId, newObject, headersConfig) => {
-  await axios.put(
-    `https://ipet-adoption-service.herokuapp.com/pets/${petId}`,
-    newObject,
-    {
-      headers: headersConfig,
-    }
-  );
+  await axios.put(`${URLrequests}/pets/${petId}`, newObject, {
+    headers: headersConfig,
+  });
 };
 
 const addPet = async (newPet, setAllPets, headersConfig) => {
   await axios
-    .post("https://ipet-adoption-service.herokuapp.com/pets/", newPet, {
+    .post(`${URLrequests}/pets/`, newPet, {
       headers: headersConfig,
     })
     .then(() => {
@@ -120,49 +107,44 @@ const addPet = async (newPet, setAllPets, headersConfig) => {
 
 const savePet = async (userId, petId, headersConfig) => {
   await axios.post(
-    `https://ipet-adoption-service.herokuapp.com/pets/save/${userId}/${petId}`,
+    `${URLrequests}/pets/save/${userId}/${petId}`,
     {},
     { headers: headersConfig }
   );
 };
 
 const unsavePet = async (userId, petId, headersConfig) => {
-  await axios.delete(
-    `https://ipet-adoption-service.herokuapp.com/pets/save/${userId}/${petId}`,
-    {
-      headers: headersConfig,
-    }
-  );
+  await axios.delete(`${URLrequests}/pets/save/${userId}/${petId}`, {
+    headers: headersConfig,
+  });
 };
 
 const adoptPet = async (userId, petId, headersConfig) => {
   await axios.post(
-    `https://ipet-adoption-service.herokuapp.com/pets/adopt/${userId}/${petId}`,
+    `${URLrequests}/pets/adopt/${userId}/${petId}`,
     {},
     { headers: headersConfig }
   );
 };
 
 const returnAdoptedPet = async (userId, petId, headersConfig) => {
-  await axios.delete(
-    `https://ipet-adoption-service.herokuapp.com/pets/adopt/${userId}/${petId}`,
-    { headers: headersConfig }
-  );
+  await axios.delete(`${URLrequests}/pets/adopt/${userId}/${petId}`, {
+    headers: headersConfig,
+  });
 };
 
 const fosterPet = async (userId, petId, headersConfig) => {
   await axios.post(
-    `https://ipet-adoption-service.herokuapp.com/pets/foster/${userId}/${petId}`,
+    `${URLrequests}/pets/foster/${userId}/${petId}`,
     {},
     { headers: headersConfig }
   );
 };
 
 const returnFosteredPet = async (userId, petId, headersConfig) => {
-  await axios.delete(
-    `https://ipet-adoption-service.herokuapp.com/pets/foster/${userId}/${petId}`,
-    { headers: headersConfig }
-  );
+  await axios.delete(`${URLrequests}/pets/foster/${userId}/${petId}`, {
+    headers: headersConfig,
+  });
 };
 
 const checkPetStatus = async (
@@ -174,7 +156,7 @@ const checkPetStatus = async (
   setPetAdopted
 ) => {
   await axios
-    .get(`http://localhost:3006/pets/checkstatus/${userId}/${petId}`, {
+    .get(`${URLrequests}/pets/checkstatus/${userId}/${petId}`, {
       headers: headersConfig,
     })
     .then((res) => {
@@ -194,7 +176,7 @@ const getSavedPetsByUserId = async (userId, headersConfig) => {
   let savedPets = [];
   let requests = [];
   await axios
-    .get(`http://localhost:3006/pets/saved/user/${userId}`, {
+    .get(`${URLrequests}/pets/saved/user/${userId}`, {
       headers: headersConfig,
     })
     .then((petsIds) => {
@@ -213,7 +195,7 @@ const getOwnedPetsByUserId = async (userId, headersConfig) => {
   let ownedPets = [];
   let requests = [];
   await axios
-    .get(`http://localhost:3006/pets/owned/user/${userId}`, {
+    .get(`${URLrequests}/pets/owned/user/${userId}`, {
       headers: headersConfig,
     })
     .then((petsIds) => {

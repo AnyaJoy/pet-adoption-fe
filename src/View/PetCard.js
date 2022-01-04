@@ -187,7 +187,7 @@ function PetCard() {
           </div>
           <div className="card-field-label">
             <img className="bullet-point-img" src={logo} /> &nbsp;Weight:{" "}
-            <span className="card-info">{pet.weight}lb</span>
+            <span className="card-info">{pet.weight}kg</span>
           </div>
           <div className="card-field-label">
             <img className="bullet-point-img" src={logo} />{" "}

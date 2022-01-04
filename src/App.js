@@ -12,17 +12,6 @@ import Admin from "./View/Admin";
 import EditPetCard from "./View/EditPetCard";
 import { getAllPets, getUserByToken } from "./Components/RequestsDB";
 
-import { initializeApp } from "firebase/app";
-const firebaseConfig = {
-  apiKey: "AIzaSyDr3Rtua5T_XkoW0J-bSQpWJYoEAvtbsCc",
-  authDomain: "ipet-adoption-service.firebaseapp.com",
-  projectId: "ipet-adoption-service",
-  storageBucket: "ipet-adoption-service.appspot.com",
-  messagingSenderId: "793108659672",
-  appId: "1:793108659672:web:ebca54c5e7ffc2988646ad",
-};
-const app = initializeApp(firebaseConfig);
-
 function App() {
   const [allUsers, setAllUsers] = useState([]);
   const [user, setUser] = useState(false);
