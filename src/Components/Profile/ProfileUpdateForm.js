@@ -10,6 +10,7 @@ function ProfileUpdateForm({ bio }) {
   const [firstName, setFirstName] = useState(appContext.user.first_name);
   const [lastName, setLastName] = useState(appContext.user.last_name);
   const [email, setEmail] = useState(appContext.user.email);
+  const [picture, setPicture] = useState(appContext.user.picture);
   const [password, setPassword] = useState(appContext.user.password_hash);
   const [newPassword, setNewPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -33,49 +34,41 @@ function ProfileUpdateForm({ bio }) {
       lastName != appContext.user.last_name ||
       email != appContext.user.email ||
       newPassword != "" ||
-      bio != appContext.user.bio
+      bio != appContext.user.bio ||
+      picture != appContext.user.picture
     ) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
     }
-  }, [newPassword, email, firstName, lastName, bio]);
+  }, [newPassword, email, firstName, lastName, bio, picture]);
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     appContext.setError(false);
     setLoading(true);
 
-    //for UX
-    setTimeout(() => {
-      const updatedUser = {
-        first_name: firstName,
-        last_name: lastName,
-        email: email,
-        password: password,
-        bio: bio,
-        picture: "picture"
-      };
+    const updatedUser = new FormData();
+    updatedUser.append("first_name", firstName);
+    updatedUser.append("last_name", lastName);
+    updatedUser.append("email", email);
+    updatedUser.append("password", password);
+    updatedUser.append("bio", bio);
+    updatedUser.append("picture", picture);
 
-      editUser(
-        appContext.user.id,
-        updatedUser,
-        appContext.setUser,
-        headersConfig
-      )
-        .then(() => {
-          setLoading(false);
-          appContext.setSuccessAlert(true);
-          setTimeout(() => {
-            appContext.setSuccessAlert(false);
-          }, 2000);
-        })
-        .catch((err) => {
-          setLoading(false);
-          appContext.setError(err.response.data);
-          return;
-        });
-    }, 600);
+    editUser(appContext.user.id, updatedUser, appContext.setUser, headersConfig)
+      .then(() => {
+        setLoading(false);
+        appContext.setSuccessAlert(true);
+        setTimeout(() => {
+          appContext.setSuccessAlert(false);
+        }, 2000);
+      })
+      .catch((err) => {
+        setLoading(false);
+        appContext.setError(err.response.data);
+        return;
+      });
   };
 
   return (
@@ -125,7 +118,11 @@ function ProfileUpdateForm({ bio }) {
           {appContext.successAlert ? (
             <button className="save-button-success">Saved!</button>
           ) : (
-            <button type="submit" className={`save-button-${!buttonDisabled}`} disabled={buttonDisabled}>
+            <button
+              type="submit"
+              className={`save-button-${!buttonDisabled}`}
+              disabled={buttonDisabled}
+            >
               Save Changes
             </button>
           )}
