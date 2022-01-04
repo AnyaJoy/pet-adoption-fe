@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import AppContext from "../Context/AppContext";
 import { useState } from "react/cjs/react.development";
 import Loader from "../Components/Loader";
+import { getAllPets } from "../Components/RequestsDB";
 
 function Search() {
   const appContext = useContext(AppContext);
@@ -11,7 +12,7 @@ function Search() {
 
   useEffect(() => {
     appContext.setLocation("/search");
-
+    getAllPets(appContext.setPetsToDisplay);
     setTimeout(() => {
       setPageLoading(false);
     }, 600);

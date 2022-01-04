@@ -1,9 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "../../Context/AppContext";
 import SearchForm from "../Search/SearchForm";
+import { getAllPets } from "../RequestsDB";
 
 function HomeUserLoggedIn() {
   const appContext = useContext(AppContext);
+
+  useEffect(() => {
+    getAllPets(appContext.setPetsToDisplay);
+  }, [])
 
   return (
     <div className="home-page-logged-in-wrapper">

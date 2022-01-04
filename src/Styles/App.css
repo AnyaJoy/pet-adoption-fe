@@ -15,11 +15,9 @@
 
 .loader {
   height: 80vh;
-  /* background-color: rgb(169, 174, 207); */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-bottom: 70px; */
 }
 
 .loader span {

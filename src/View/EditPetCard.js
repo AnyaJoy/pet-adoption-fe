@@ -1,4 +1,4 @@
-import "../Styles/PetPage.css";
+import "../Styles/PetCard.css";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useContext, useState } from "react";
@@ -10,7 +10,7 @@ import Loader from "../Components/Loader";
 function EditPetCard() {
   const appContext = useContext(AppContext);
   const location = useLocation();
-  const [pet, setPet] = useState("");
+  const [pet, setPet] = useState();
   const [name, setName] = useState();
   const [type, setType] = useState();
   const [breed, setBreed] = useState();

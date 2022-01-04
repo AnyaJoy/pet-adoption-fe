@@ -1,4 +1,4 @@
-import "../Styles/PetPage.css";
+import "../Styles/PetCard.css";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useContext, useState } from "react";

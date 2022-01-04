@@ -1,4 +1,4 @@
-import "../../Styles/SearchForm.css";
+import "../../Styles/Search.css";
 import React from "react";
 import { useState, useContext, useEffect } from "react/cjs/react.development";
 import Loader from "../Loader";
@@ -36,7 +36,10 @@ function SearchForm() {
       console.log(err);
     });
 
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false)
+    }, 600);
+    
   };
 
   function submitOnEnter(event) {

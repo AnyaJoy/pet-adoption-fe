@@ -40,12 +40,28 @@
   background-color: white;
   border-radius: 10px;
   margin-top: 15px;
+  position: relative;  /* for .upload-avatar-button */
 }
 
 .profile-img {
   border-radius: 10px;
   width: 30%;
   margin: 10px;
+}
+
+#file-input-profile {
+  display: none;
+}
+
+/* for apdating avatar (on the img itself) */
+.upload-avatar-button { 
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 93px;
+  height: 93px;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .user-name-and-description {

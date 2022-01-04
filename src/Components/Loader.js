@@ -4,7 +4,6 @@ export default function Loader(props) {
     const { classname } = props;
     return (
         <>
-            {/* <div className={classname}> */}
             <div className={classname}>
                 <span></span>
                 <span></span>

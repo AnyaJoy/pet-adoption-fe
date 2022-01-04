@@ -4,13 +4,12 @@ import Loader from "../Loader";
 import AppContext from "../../Context/AppContext";
 import { editUser } from "../RequestsDB";
 
-function ProfileUpdateForm({ bio }) {
+function ProfileUpdateForm({ bio, picture }) {
   const appContext = useContext(AppContext);
 
   const [firstName, setFirstName] = useState(appContext.user.first_name);
   const [lastName, setLastName] = useState(appContext.user.last_name);
   const [email, setEmail] = useState(appContext.user.email);
-  const [picture, setPicture] = useState(appContext.user.picture);
   const [password, setPassword] = useState(appContext.user.password_hash);
   const [newPassword, setNewPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -21,8 +20,6 @@ function ProfileUpdateForm({ bio }) {
   };
 
   useEffect(() => {
-    appContext.setError(false); // in case there was an error alert perviously
-
     if (newPassword) {
       setPassword(newPassword);
     } else {
@@ -41,6 +38,8 @@ function ProfileUpdateForm({ bio }) {
     } else {
       setButtonDisabled(true);
     }
+    
+    appContext.setError(false);
   }, [newPassword, email, firstName, lastName, bio, picture]);
 
   const handleUpdateProfile = async (e) => {

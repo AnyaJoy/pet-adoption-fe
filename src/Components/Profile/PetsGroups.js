@@ -6,6 +6,7 @@ import AppContext from "../../Context/AppContext";
 import PetsList from "../PetsList";
 import { getSavedPetsByUserId, getOwnedPetsByUserId } from "../RequestsDB";
 
+ //component is used by admin(viewing user's pets) and user(viewing his pets)
 function PetsGroups({
   userType,
   messageForAdmin,

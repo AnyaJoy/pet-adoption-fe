@@ -1,4 +1,4 @@
-import "../../Styles/AddOrEditPet.css";
+import "../../Styles/AdminPages.css";
 import { useContext, useState, useEffect } from "react";
 import AppContext from "../../Context/AppContext";
 import logo from "../../Pictures/pink-paw.png";

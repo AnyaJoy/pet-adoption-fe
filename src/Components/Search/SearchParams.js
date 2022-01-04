@@ -1,5 +1,4 @@
 import Select from "react-select";
-import { useEffect, useState } from "react";
 
 const customStyles = {
   option: (provided, state) => ({

@@ -1,4 +1,4 @@
-import "../../Styles/SearchToggle.css";
+import "../../Styles/Search.css";
 
 function SearchToggle({ advancedSearchSelected, selectAdvancedSearch }) {
   return (

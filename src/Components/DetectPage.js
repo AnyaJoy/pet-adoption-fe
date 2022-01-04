@@ -1,4 +1,5 @@
 const changeActivePageColor = (location, setHomePageActive, setProfilePageActive, setAdminPageActive, setSearchPageActive) => {
+  
   if (location === "/") {
     setHomePageActive(true);
     setProfilePageActive(false);
