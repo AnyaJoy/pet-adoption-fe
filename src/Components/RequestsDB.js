@@ -1,5 +1,8 @@
 import axios from "axios";
-import { URLrequests } from "../config";
+import env from "react-dotenv";
+
+const URLrequests = env.URL_REQUESTS;
+// import { URLrequests } from "../config";
 
 const signupUser = async (newUser) => {
   await axios.post(`${URLrequests}/users/signup`, newUser);
