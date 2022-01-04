@@ -2,10 +2,7 @@ import axios from "axios";
 import { URLrequests } from "../config";
 
 const signupUser = async (newUser) => {
-  await axios.post(
-    "https://ipet-adoption-service.herokuapp.com/users/signup",
-    newUser
-  );
+  await axios.post(`${URLrequests}/users/signup`, newUser);
 };
 
 const loginUser = async (user) => {
