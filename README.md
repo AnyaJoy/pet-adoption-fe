@@ -39,7 +39,10 @@ On the front-end admins should be able to:
 
 ### Screenshots
 
+Home screen
 ![](./screenshots/Screenshot_1.png)
+
+Admin panel
 ![](./screenshots/Screenshot_2.png)
 
 ### Links
