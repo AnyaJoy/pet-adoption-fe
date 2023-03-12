@@ -42,7 +42,7 @@ On the front-end admins should be able to:
 Home screen
 ![](./screenshots/Screenshot_1.png)
 
-Admin panel
+Profile
 ![](./screenshots/Screenshot_2.png)
 
 ### Links
