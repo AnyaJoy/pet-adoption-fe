@@ -1,5 +1,3 @@
-Deployed website: https://ipet-adoption.herokuapp.com
-
 # Pet Adoption Project
 
 A pet-adoption web platform with user and admin side.
